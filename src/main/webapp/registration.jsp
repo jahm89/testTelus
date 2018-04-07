@@ -147,7 +147,7 @@
 
 								if ($("#password").val() !== $("#confirm")
 										.val()) {
-									alert("Las contraseñas no coinciden");
+									alert("Passwords don't match");
 									return;
 								}
 
@@ -162,7 +162,7 @@
 										});
 
 								if (flag)
-									alert("Debe llenar todos los campos son requeridos");
+									alert("Fill all fields are required");
 								else
 									$("#save").click();
 

@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,7 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "donation")
-@XmlRootElement
 public class Donation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -122,7 +120,9 @@ public class Donation implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entities.Donation[ id=" + id + " ]";
+        return "Donation [id=" + id + ", institution=" + idInstitution.getName()
+                + ", donor=" + idDonor.getName()+" "+idDonor.getSurname() + ", amount=" + amount +"]";
     }
+    
     
 }

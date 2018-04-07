@@ -3,6 +3,9 @@ package com.test.jahm.controller;
 import com.test.jahm.entity.CreditCard;
 import com.test.jahm.entity.Donor;
 import com.test.jahm.entity.User;
+import com.test.jahm.entity.Donation;
+import com.test.jahm.repository.CreditCardRepository;
+import com.test.jahm.repository.DonationRepository;
 import com.test.jahm.repository.DonorRepository;
 import com.test.jahm.repository.UserRepository;
 import com.test.jahm.service.CreditCardService;
@@ -11,16 +14,20 @@ import com.test.jahm.service.SecurityService;
 import com.test.jahm.service.UserService;
 import com.test.jahm.validator.UserValidator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.support.RequestPartServletServerHttpRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -44,6 +51,14 @@ public class UserController {
     
     @Autowired
     private DonorRepository donorRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
+    private DonationRepository donationRepository;
+    
+    
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -63,7 +78,7 @@ public class UserController {
         
         userService.save(userForm);
         
-        //Assign user as donor      
+        //Assign user as donor
         Donor donor = new Donor();
         donor.setIdDocument(Integer.parseInt(userForm.getIdDocument()));
         donor.setIdUser(userForm);
@@ -89,9 +104,6 @@ public class UserController {
         
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
         
-        donor.setDonationList(donorRepository.findDonations(donor.getId()));
-        
-        rattrs.addFlashAttribute("idDonor", donor.getId().toString());
         
         return "redirect:/welcome";
     }
@@ -108,8 +120,26 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model, @ModelAttribute("idDonor") String id) {
-    	model.addAttribute("donor", id);
-        return "welcome";
+    public ModelAndView welcome() {
+    	
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String userName = authentication.getName();
+    	
+    	User user = userRepository.findByUsername(userName);
+    	Donor donor = donorRepository.findByIdUser(user);
+    	
+    	List<Donation> donations = new ArrayList<>();
+    	donations = donationRepository.findDonations(donor.getId());
+    	
+    	
+    	ModelAndView view = new ModelAndView("welcome");
+    	view.addObject("donor", donor);
+    	view.addObject("list", donations);
+    	
+    	
+        return view;
     }
+    
+    
+    
 }

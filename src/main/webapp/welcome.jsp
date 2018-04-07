@@ -15,6 +15,7 @@
     <title>Welcome to donate</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/home.css" rel="stylesheet">
 
 </head>
 <body>
@@ -24,12 +25,53 @@
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+       
+        <div class="row">
+       		
+       		<div class="col-sm-8">
+       			<h2>Welcome ${donor.name} ${donor.surname} </h2>
+       		</div>
+       		
+       		<div class="col-sm-1 col-sm-offset-3">
+				<button class="btn btn-primary logout" onclick="document.forms['logoutForm'].submit()">Logout</button>	
+			</div>
+       	</div>
+       	
+       	<br>
+       	<br>
+       	
+       	<div class="row">
+       		<div class="col-sm-3">
+       			<h5>This is your history donations</h5>
+       		</div>
+       		<div class="col-sm-2 col-sm-offset-7">
+       			<a href="${contextPath}/donate">
+       				<button class="btn btn-success donate">Do new donate</button>
+       			</a>
+       		</div>
+       	</div>
         
-        <h4>You can show your donations history</h4>
+        <table class="table table-responsive table-hover">
+        	<thead>
+        		<tr>
+        			<th>Institution</th>
+        			<th>Country</th>
+        			<th>Amount</th>
+        			<th>Date</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        	<c:forEach items="${list}" var="donation">
+        		<tr>
+					<td><c:out value="${donation.idInstitution.name}" /></td>
+					<td><c:out value="${donation.idInstitution.idDepartment.idCountry.name}" /></td>
+					<td><c:out value="${donation.amount}" /></td>
+					<td><c:out value="${donation.date}" /></td>
+        		</tr>
+        	</c:forEach>
+        	</tbody>
+        </table>
         
-        <p>${donor}</p>
 		
     </c:if>
 
