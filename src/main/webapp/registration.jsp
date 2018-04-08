@@ -34,6 +34,7 @@
 				<div class="panel-body">
 					<spring:bind path="username">
 						<div class="form-group ${status.error ? 'has-error' : ''}">
+							<label>Username</label>
 							<form:input type="text" path="username" class="form-control"
 								placeholder="Username" autofocus="true" id="username"
 								required="true"></form:input>
@@ -43,6 +44,7 @@
 
 					<spring:bind path="password">
 						<div class="form-group ${status.error ? 'has-error' : ''}">
+							<label>Password</label>
 							<form:input type="password" path="password" class="form-control"
 								placeholder="Password" id="password" required="true"></form:input>
 							<form:errors path="password"></form:errors>
@@ -51,6 +53,7 @@
 
 					<spring:bind path="passwordConfirm">
 						<div class="form-group ${status.error ? 'has-error' : ''}">
+							<label>Confirm password</label>
 							<form:input type="password" path="passwordConfirm"
 								class="form-control" placeholder="Confirm your password"
 								id="confirm" required="true"></form:input>
@@ -60,6 +63,7 @@
 
 					<spring:bind path="name">
 						<div class="form-group ${status.error ? 'has-error' : ''}">
+							<label>Name</label>
 							<form:input type="text" path="name" class="form-control"
 								placeholder="Names" id="name" required="true"></form:input>
 
@@ -68,6 +72,7 @@
 
 					<spring:bind path="surname">
 						<div class="form-group ${status.error ? 'has-error' : ''}">
+							<label>Surnames</label>
 							<form:input type="text" path="surname" class="form-control"
 								placeholder="Surnames" id="surname" required="true"></form:input>
 
@@ -76,6 +81,7 @@
 					
 					<spring:bind path="email">
 						<div class="form-group ${status.error ? 'has-error' : ''}">
+							<label>Email</label>
 							<form:input type="text" path="email" class="form-control"
 								placeholder="Email" id="email" required="true"></form:input>
 
@@ -84,6 +90,7 @@
 
 					<spring:bind path="idDocument">
 						<div class="form-group ${status.error ? 'has-error' : ''}">
+							<label>ID Document</label>
 							<form:input type="text" path="idDocument" class="form-control"
 								placeholder="ID document" id="document" required="true"></form:input>
 
@@ -165,13 +172,21 @@
 								alert("Passwords don't match");
 								return;
 							}
-							
-							if( !validateEmail($("#email").val())){
-								alert("Email is not valid");
-								return;
+							else{
+								
+								if( !validateEmail($("#email").val())){
+									alert("Email is not valid");
+									return;
+								}
+								else{
+									
+									$("#save").click();
+									
+								}
 							}
 							
-							$("#save").click();
+							
+							
 							
 						}
 							

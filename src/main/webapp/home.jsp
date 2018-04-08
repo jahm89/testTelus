@@ -26,7 +26,7 @@
 <div class="container">
 
   		<div class="row">
-       		<div class="col-sm-4 col-sm-offset-8">
+       		<div class="col-sm-5 col-sm-offset-7">
        			<div class="alert alert-success" role="alert">       			
        				<h2 class="text-right donate">VISITS TODAY ${counter}</h2>
        			</div>

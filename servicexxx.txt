@@ -4,4 +4,6 @@
 {"surnames":"Hernandez","name":"Jeovanni","email":"","idDocument":"123154213","country":"Guatemala","department":"Guatemala","institution":"Beneficiencia Guate","donationAmount":"150.0","dateOfDonation":"2018-04-07"}
 ,
 {"surnames":"Hernandez","name":"Jeovanni","email":"","idDocument":"123154213","country":"Nicaragua","department":"Managua","institution":"Hogar de ancianos Nicaragua","donationAmount":"250.0","dateOfDonation":"2018-04-07"}
+,
+{"surnames":"hernandez","name":"Jeovanni","email":"alexandermejialopez@gmail.com","idDocument":"465465454","country":"El Salvador","department":"Ahuachapán","institution":"Libras de amor","donationAmount":"100.0","dateOfDonation":"2018-04-08"}
 ]
