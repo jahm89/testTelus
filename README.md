@@ -4,6 +4,7 @@ register new users
 Prerequisites
 JDK 1.7 or later
 Maven 3 or later
+Database is done in Mysql
 
 The readme is done to use eclipse as IDE
 
