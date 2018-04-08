@@ -18,3 +18,9 @@
 .left-padding{
 	 margin-left: -11px;
 }
+.container{
+	margin-top: 4%;
+}
+.alert-success{
+    color: #3c763d;
+}

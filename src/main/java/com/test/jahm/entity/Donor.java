@@ -1,9 +1,7 @@
 package com.test.jahm.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,21 +33,22 @@ public class Donor implements Serializable {
     private int idDocument;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 250)
+    @Column(name = "name")
+    private String name;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 150)
     @Column(name = "surname")
     private String surname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
-    @Column(name = "name")
-    private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDonor")
-    private List<CreditCard> creditCardList;
+    @Size(min = 1, max = 100)
+    @Column(name = "email")
+    private String email;
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User idUser;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDonor")
-    private List<Donation> donationList;
 
     public Donor() {
     }
@@ -60,11 +57,12 @@ public class Donor implements Serializable {
         this.id = id;
     }
 
-    public Donor(Integer id, int idDocument, String surname, String name) {
+    public Donor(Integer id, int idDocument, String name, String surname, String email) {
         this.id = id;
         this.idDocument = idDocument;
-        this.surname = surname;
         this.name = name;
+        this.surname = surname;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -83,14 +81,6 @@ public class Donor implements Serializable {
         this.idDocument = idDocument;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public String getName() {
         return name;
     }
@@ -99,14 +89,20 @@ public class Donor implements Serializable {
         this.name = name;
     }
 
-
-    @XmlTransient
-    public List<CreditCard> getCreditCardList() {
-        return creditCardList;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setCreditCardList(List<CreditCard> creditCardList) {
-        this.creditCardList = creditCardList;
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public User getIdUser() {
@@ -115,15 +111,6 @@ public class Donor implements Serializable {
 
     public void setIdUser(User idUser) {
         this.idUser = idUser;
-    }
-
-    @XmlTransient
-    public List<Donation> getDonationList() {
-        return donationList;
-    }
-
-    public void setDonationList(List<Donation> donationList) {
-        this.donationList = donationList;
     }
 
     @Override

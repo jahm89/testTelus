@@ -25,7 +25,7 @@
 
 	<div class="container">
 
-		<form:form method="POST" modelAttribute="userForm" class="form-signin"	id="formReg">
+		<form:form method="POST" modelAttribute="userForm" class="form-register"	id="formReg">
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -70,6 +70,14 @@
 						<div class="form-group ${status.error ? 'has-error' : ''}">
 							<form:input type="text" path="surname" class="form-control"
 								placeholder="Surnames" id="surname" required="true"></form:input>
+
+						</div>
+					</spring:bind>
+					
+					<spring:bind path="email">
+						<div class="form-group ${status.error ? 'has-error' : ''}">
+							<form:input type="text" path="email" class="form-control"
+								placeholder="Email" id="email" required="true"></form:input>
 
 						</div>
 					</spring:bind>
@@ -137,11 +145,7 @@
 
 						var flag = false;
 
-						if ($("#password").val() !== $("#confirm").val()) {
-							alert("Passwords don't match");
-							return;
-						}
-
+						
 						$('input').each(
 								function(index, element) {
 
@@ -152,14 +156,37 @@
 
 								});
 
-						if (flag)
+						if (flag){							
 							alert("Fill all fields are required");
-						else
+						}
+						else{
+							
+							if ($("#password").val() !== $("#confirm").val()) {
+								alert("Passwords don't match");
+								return;
+							}
+							
+							if( !validateEmail($("#email").val())){
+								alert("Email is not valid");
+								return;
+							}
+							
 							$("#save").click();
+							
+						}
+							
 
 					});
 
 		})();
+		
+		
+		function validateEmail(str) {
+		    var lastAtPos = str.lastIndexOf('@');
+		    var lastDotPos = str.lastIndexOf('.');
+		    return (lastAtPos < lastDotPos && lastAtPos > 0 && str.indexOf('@@') == -1 && lastDotPos > 2 && (str.length - lastDotPos) > 2);
+		}
+		
 	</script>
 
 </body>

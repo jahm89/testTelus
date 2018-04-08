@@ -21,10 +21,12 @@
 </head>
 
 <body>
-
+	
+	<jsp:include page="parts/header.jsp"></jsp:include>
+	
 	<div class="container">
 
-		<jsp:include page="parts/header.jsp"></jsp:include>
+		
 
 		<div class="row">
 			<div class="col-sm-8">
@@ -38,6 +40,8 @@
        		</div>
 		</div>
 
+		<br>
+		<br>
 		<br>
 
 		<div class="row">
@@ -88,6 +92,8 @@
 		</div>
 
 	</div>
+	
+	<jsp:include page="parts/header.jsp"></jsp:include>
 	<!-- /container -->
 	<script src="${contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>

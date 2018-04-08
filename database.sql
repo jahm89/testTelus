@@ -67,7 +67,7 @@ CREATE TABLE `credit_card` (
 
 LOCK TABLES `credit_card` WRITE;
 /*!40000 ALTER TABLE `credit_card` DISABLE KEYS */;
-INSERT INTO `credit_card` VALUES (2,1,'2132132132132132',213,23,3);
+INSERT INTO `credit_card` VALUES (2,1,'2132132132132132',213,23,3),(3,21,'4321321321321321',121,21,4);
 /*!40000 ALTER TABLE `credit_card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,6 +142,7 @@ CREATE TABLE `donor` (
   `name` varchar(250) NOT NULL,
   `surname` varchar(150) NOT NULL,
   `id_user` bigint(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_hp393i0ydg0vr83eh7r0dut7h` (`id_user`),
   CONSTRAINT `FK_hp393i0ydg0vr83eh7r0dut7h` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
@@ -154,7 +155,7 @@ CREATE TABLE `donor` (
 
 LOCK TABLES `donor` WRITE;
 /*!40000 ALTER TABLE `donor` DISABLE KEYS */;
-INSERT INTO `donor` VALUES (3,123154213,'Jeovanni','Hernandez',17);
+INSERT INTO `donor` VALUES (3,123154213,'Jeovanni','Hernandez',17,''),(4,464654,'Jeovanni','Hernandez',18,'jeovanni.jahm@gmail.com');
 /*!40000 ALTER TABLE `donor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +207,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'$2a$10$aepcWT2gUSgrtvt1G85bB.hKFsnHx2h9dVnSL6qzBuXNcETqvZMSq','jeovanni'),(17,'$2a$10$VXOELZyECrKZvrvNAHNhresHdPH3xhxl0NsnWUOZwYGrlTT7dPi76','jeovanni2');
+INSERT INTO `user` VALUES (1,'$2a$10$aepcWT2gUSgrtvt1G85bB.hKFsnHx2h9dVnSL6qzBuXNcETqvZMSq','jeovanni'),(17,'$2a$10$VXOELZyECrKZvrvNAHNhresHdPH3xhxl0NsnWUOZwYGrlTT7dPi76','jeovanni2'),(18,'$2a$10$WdDpZlHz1yOTO4BDHqWMdeGXTXDyy5hj88K.4Psr/DUrC667c0Y6W','jeovanni3');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -219,4 +220,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-07 22:38:03
+-- Dump completed on 2018-04-08 14:43:49

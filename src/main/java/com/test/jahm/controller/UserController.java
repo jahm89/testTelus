@@ -14,7 +14,14 @@ import com.test.jahm.service.SecurityService;
 import com.test.jahm.service.UserService;
 import com.test.jahm.validator.UserValidator;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -84,6 +91,7 @@ public class UserController {
         donor.setIdUser(userForm);
         donor.setName(userForm.getName());
         donor.setSurname(userForm.getSurname());
+        donor.setEmail(userForm.getEmail());
         donorService.save(donor);
         
         //Create credit card
@@ -136,6 +144,39 @@ public class UserController {
     	view.addObject("donor", donor);
     	view.addObject("list", donations);
     	
+    	String counterVisits = "";
+    	
+    	try {
+			
+    		DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+			Date dateCurrent = new Date();
+			String dateCurrentS = formatter.format(dateCurrent);
+			String sCurrentLine;
+			
+    		BufferedReader br = new BufferedReader(new FileReader("CounterVist.txt"));
+    		
+    		while((sCurrentLine = br.readLine()) != null) {
+    			
+    			String[] currentData = sCurrentLine.split("\\|");
+				String currentDate = currentData[0];
+				
+				
+				if(dateCurrentS.equals(currentDate)) {
+					counterVisits = currentData[1];
+				}
+    			
+    		}
+    		
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	view.addObject("counter", counterVisits);
     	
         return view;
     }

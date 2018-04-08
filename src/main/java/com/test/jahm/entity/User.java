@@ -15,6 +15,7 @@ public class User {
     private String number;
     private String date;
     private String pin;
+    private String email;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -104,6 +105,15 @@ public class User {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	@Transient
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

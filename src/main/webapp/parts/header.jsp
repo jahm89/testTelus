@@ -3,6 +3,27 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Welcome ${donor.name} ${donor.surname} </a>
+    </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a onclick="document.forms['logoutForm'].submit()" href="#">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 <input type="hidden" name="_csrf"	value="${_csrf.token}" />
 <input type="hidden" name="_csrf_header"	value="${_csrf.headerName}" />
 
@@ -12,17 +33,6 @@
 	<input type="hidden" name="${_csrf.parameterName}"	value="${_csrf.token}" />
 </form>
 
-<div class="row">
-
-	<div class="col-sm-8">
-		<h2>Welcome ${donor.name} ${donor.surname}</h2>
-	</div>
-
-	<div class="col-sm-1 col-sm-offset-3">
-		<button class="btn btn-primary logout"
-			onclick="document.forms['logoutForm'].submit()">Logout</button>
-	</div>
-</div>
 
 <br>
 <br>

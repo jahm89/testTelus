@@ -17,42 +17,37 @@
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/home.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/datatables.min.css"/>
+
 
 </head>
 <body>
+<jsp:include page="parts/header.jsp"></jsp:include>
 <div class="container">
 
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-       
-        <div class="row">
-       		
-       		<div class="col-sm-8">
-       			<h2>Welcome ${donor.name} ${donor.surname} </h2>
+  		<div class="row">
+       		<div class="col-sm-4 col-sm-offset-8">
+       			<div class="alert alert-success" role="alert">       			
+       				<h2 class="text-right donate">VISITS TODAY ${counter}</h2>
+       			</div>
        		</div>
-       		
-       		<div class="col-sm-1 col-sm-offset-3">
-				<button class="btn btn-primary logout" onclick="document.forms['logoutForm'].submit()">Logout</button>	
-			</div>
        	</div>
        	
-       	<br>
-       	<br>
-       	
        	<div class="row">
-       		<div class="col-sm-3">
-       			<h5>This is your history donations</h5>
+       		<div class="col-sm-8">
+       			<h3>This is your  donations records</h3>
        		</div>
-       		<div class="col-sm-2 col-sm-offset-7">
+       		<div class="col-sm-2 col-sm-offset-2">
        			<a href="${contextPath}/donate">
        				<button class="btn btn-success donate">Do new donate</button>
        			</a>
        		</div>
        	</div>
+       	
+       	<br>
+       	
         
-        <table class="table table-responsive table-hover">
+        <table class="table table-responsive table-hover" id="tableDonations">
         	<thead>
         		<tr>
         			<th>Institution</th>
@@ -73,12 +68,19 @@
         	</tbody>
         </table>
         
-		
-    </c:if>
 
 </div>
+<jsp:include page="parts/footer.jsp"></jsp:include>
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${contextPath}/resources/js/datatables.min.js"></script>
+
+<script>
+$(document).ready( function () {
+    $('#tableDonations').DataTable();
+} );
+</script>
+
 </body>
 </html>

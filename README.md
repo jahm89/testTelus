@@ -13,7 +13,7 @@ The readme is done to use eclipse as IDE
 
 1. Clone or download ZIP (if download as ZIP you may uncompress it)
 
-2. Restore database from file database.sql it's in root
+2. Restore database from file database.sql it's in root, the name database: test_donation
 
 3. configure file "application.properties" path : src/main/resources
 
@@ -30,8 +30,28 @@ If you don't have configured eclipse with boot spring, run the project like mave
 	** then just run the project
 	
 
-you may access to location server and port, usually is: localhost:8080/
+you may access to location server and port, usually is: http://localhost:8080/
 and that't it you can show the Application
 
 
 You don't need some library external because all dependencies are in pom.xml
+
+## OUTPUTS ##
+1. Entity Relationship diagram, in root location, as ERR diagram open with mysql WorkBench Or see the image ERRDiagram
+2. Database Scripts.  in root application file: database.sql
+3. Web application to manage online donations. source src
+4. Web service to provide information to external resources. The file name must be servicexxx File is generated in root application
+	every time to send the request to web service:
+	
+  URL to web service: http://URLServer/getControlDonations 
+  example: http://localhost:8080/getControlDonations
+  
+  You can see the data at output, but also You will see the file at root name "servicexxx.txt"
+  
+
+5. Visitor counter registered in a txt file, different row for each day and showing in application main page.
+	Every time that any user enter to application the file is update, create new line to every day.
+	
+	name file "CounterVist.txt" at root application (The file is created automatically)
+	
+
