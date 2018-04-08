@@ -10,3 +10,11 @@
 .right{
 	float: right;
 }
+
+.hidden{
+	display: none;
+}
+
+.left-padding{
+	 margin-left: -11px;
+}

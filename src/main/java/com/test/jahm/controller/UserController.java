@@ -105,7 +105,7 @@ public class UserController {
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
         
         
-        return "redirect:/welcome";
+        return "redirect:/home";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -119,7 +119,7 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public ModelAndView welcome() {
     	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -132,7 +132,7 @@ public class UserController {
     	donations = donationRepository.findDonations(donor.getId());
     	
     	
-    	ModelAndView view = new ModelAndView("welcome");
+    	ModelAndView view = new ModelAndView("home");
     	view.addObject("donor", donor);
     	view.addObject("list", donations);
     	

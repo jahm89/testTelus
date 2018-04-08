@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -65,7 +66,7 @@
         		<tr>
 					<td><c:out value="${donation.idInstitution.name}" /></td>
 					<td><c:out value="${donation.idInstitution.idDepartment.idCountry.name}" /></td>
-					<td><c:out value="${donation.amount}" /></td>
+					<td>$ <fmt:formatNumber value="${donation.amount}" type="currency" currencySymbol=""/></td>
 					<td><c:out value="${donation.date}" /></td>
         		</tr>
         	</c:forEach>
