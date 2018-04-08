@@ -9,7 +9,7 @@ The readme is done to use eclipse as IDE
 
 ## STEPS TO RUN ##
 
-(I use eclipse as my IDE but, the you can choice whatelse use)
+(I use eclipse as my IDE but you can choice)
 
 1. Clone or download ZIP (if download as ZIP you may uncompress it)
 
@@ -22,12 +22,12 @@ The readme is done to use eclipse as IDE
 
 4. import project maven in eclipse
 
-5. If you have configured eclipse to run project's spring boot, just may use boot dashboard and run the project
+5. If you have configured eclipse or netnbeans to run project's spring boot, just may use boot dashboard and run the project
 
 If you don't have configured eclipse with boot spring, run the project like maven project:
 	
-	** right click -> maven -> update project
-	** then just run the project
+	** rigth click over project -> maven -> update project
+	** then run the project: rigth click over project -> run as -> spring boot app
 	
 
 you may access to location server and port, usually is: http://localhost:8080/
